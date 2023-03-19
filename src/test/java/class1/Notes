@@ -1,0 +1,59 @@
+- opened a project with java and maven
+- downloaded dependencies in the pom.xml file
+    - if you ever wanted to change the version of a dependency, you
+      can directly change it in the <version> tag, then just refresh maven
+      (right click pom.xml --> maven --> refresh)
+
+TestNG
+    - is a testing tool that can be used for unit, integration testing
+    - in TestNG there is no main method, if you want to run a method, right click and run
+    - tests in a class are executed in alphabetical order based on the method's name
+      but this usually shouldn't matter
+
+    - TestNG might seem unnecessary but,
+      it offers Annotations, Preconditions
+
+Annotations:
+    - ex: @Test
+        - any test case you write will be under this annotation
+    - @BeforeMethod
+        - pre condition that allows that method to execute BEFORE every test case executes
+    - @AfterMethod
+        - allows that method to execute AFTER every test case executes
+
+Priority
+    - if there is no priority set, tests will run in alphabetical order.
+    - to set priority: @Test(priority = (number))
+        - number 1 = highest priority
+
+Enable/Disable
+    - for ex: when you have a test case that failed and reported it to a dev, you
+      don't want to run that case again so instead of commenting it out, use:
+      @Test(enabled = false)
+
+DependsOn
+    - sometimes for one test case to be run, another test case must have passed (ex in code)
+    do this by: @Test(dependsOnMethods = {"(method name)"})
+
+Selenium
+    - since we have the dependencies for Selenium, we don't have to import jars or anything else
+    - instead of setting property and creating WebDriver, do this instead:
+      WebDriverManager.chromedriver().setup();
+      WebDriver driver = new ChromeDriver();
+
+    - When we declare a WebDriver inside a method, we are only allowed to use driver
+      inside that method alone. so we should declare driver in the instance field so
+      all methods have access to it (and static so that its shared value)
+
+Assertions
+    - if conditions can't be used for verifying things because all you do is print out
+      statements if something pass/fails. Use Assertions instead
+    - Assertions allow us to compare 2 values, syntax:
+      Assert.assertEquals(actual, expected)
+    - Assertions actually link the result with the test case and has more information,
+      rather than just printing out statements
+
+    - Hard assertions: when this fails, the test case will fail and won't bother to check
+      other assertions. Examples:
+        - assertEquals() compares 2 values (String, int, boolean)
+        - assertTrue() checks if the value is true (boolean)
