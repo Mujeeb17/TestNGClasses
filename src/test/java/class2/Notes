@@ -1,0 +1,26 @@
+Assertion continued
+    - in a single test case, its best to just make one assertion
+    - soft assertions should be used in a test case where you have
+      more than one assertion and you want to know which assertion is
+      failing
+    - hard assertions, if you have more than 1 assertion and each assertion
+      is only going to pass if the previous one also passed, make all of them
+      hard assertions (if you used soft assertions here, you are wasting time
+      if one assertion fails)
+
+Data Provider
+    - used for data driven testing, same scenario with different sets of data
+    - 2D array that holds information you will be using often like a
+      username or password in several test cases
+    - must have a name
+    - use: @DataProvider (name = "")
+
+    - in the @Test annotation you must have:
+      @Test (dataProvider = (name of DataProvider))
+    - method signature must have the parameters from the data provider
+    - the test case will automatically loop through all arrays inside
+      the 2D array
+
+    - we should use data provider when we have a few or some test cases
+      that use the same type of values, if we had to test several (100+ for ex)
+      we should use another type of class (taught later)

@@ -48,6 +48,7 @@ Selenium
 Assertions
     - if conditions can't be used for verifying things because all you do is print out
       statements if something pass/fails. Use Assertions instead
+      (if conditions don't affect the failure/passage of a test case)
     - Assertions allow us to compare 2 values, syntax:
       Assert.assertEquals(actual, expected)
     - Assertions actually link the result with the test case and has more information,
@@ -57,3 +58,10 @@ Assertions
       other assertions. Examples:
         - assertEquals() compares 2 values (String, int, boolean)
         - assertTrue() checks if the value is true (boolean)
+    - soft assertions: won't mark the test cases as failed immediately even if 1 assertion has failed.
+      they allow the test to continue after it fails whereas hard assertions stop execution after a fail
+        - all you need is instead of creating object of Assert, create object of SoftAssert
+          (They have the same methods)
+        - once you have made all the assertions in the test case, use:
+          softAssert.assertAll();
+          because this actually passes the result of assertion to the test case
