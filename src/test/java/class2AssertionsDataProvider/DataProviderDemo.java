@@ -1,4 +1,4 @@
-package class2;
+package class2AssertionsDataProvider;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -37,7 +37,7 @@ public class DataProviderDemo {
         Object[][] loginData={
                 {"Admin", "12345", "Invalid credentials"},
                 {"ABCD", "Hum@nhrm123", "Invalid credentials"},
-                {"Admin", "", "Password cannot be empt"},
+                {"Admin", "", "Password cannot be empty"},
                 {"", "Hum@nhrm123", "Username cannot be empty"}
         };
         return  loginData;

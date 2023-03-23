@@ -1,22 +1,20 @@
-package class1;
+package class1AnnotationsAndModifiers;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class AssertionDemo {
+public class TestNGExample {
+
     public static WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void setupBrowser(){
         WebDriverManager.chromedriver().setup();
 
@@ -25,26 +23,21 @@ public class AssertionDemo {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
-    @AfterMethod
+
+    @AfterMethod(alwaysRun = true)
     public void closeBrowser(){
         driver.quit();
     }
-
-    //enter username Admin, and enter false password. verify 'invalid credentials is displayed'
-    @Test
-    public void invalidCredentialsVerification(){
+    @Test(groups = "regression")
+    public void login(){
         driver.findElement(By.xpath("//input[@name='txtUsername']")).sendKeys("Admin");
-        driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("password");
+        driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("Hum@nhrm123");
         driver.findElement(By.xpath("//input[@name='Submit']")).click();
+    }
 
-        String text = driver.findElement(By.xpath("//span[text()='Invalid credentials']")).getText();
-        String expectedError = "Invalid credentials";
-
-        //assert the value
-        Assert.assertEquals(text, expectedError);
-
-        //now check password textbox using assertions
-        boolean pwDisplayed = driver.findElement(By.xpath("//input[@id='txtPassword']")).isDisplayed();
-        Assert.assertTrue(pwDisplayed);
+    //verify that password textbox is displayed on login page
+    @Test
+    public void passwordTextBoxVerification(){
+        System.out.println(driver.findElement(By.xpath("//input[@id = 'txtPassword']")).isDisplayed());
     }
 }

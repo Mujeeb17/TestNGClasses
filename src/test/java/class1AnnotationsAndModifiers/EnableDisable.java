@@ -1,4 +1,4 @@
-package class1;
+package class1AnnotationsAndModifiers;
 
 import org.testng.annotations.Test;
 

@@ -1,0 +1,92 @@
+TestNG -> XML
+    - purpose of XML, is to control the execution of your test cases
+      according to your requirements.
+    - usually each project has one of these files but you could have more
+    - should have the following structure:
+
+<suite>
+    <test>
+
+    </test>
+</suite>
+
+    - we downloaded plugin: create testNg xml
+        - when we want to create an xml, we must make sure the
+          plugin is installed.
+        - then right click on a certain class and
+          choose create testNg xml.
+        - Then right click on project and choose
+           reload from disk
+
+    - using a XML file makes it much more easier to run test cases.
+      you can run several classes at a time just by adding a <class>
+    - XML files also allow you to run tests in parallel (2 tests at same time)
+
+    - Class wise execution: we can control which classes to execute
+    <class name="path to class">
+    </class>
+
+    - Method wise execution: we can control which methods from a class
+      we want to run (we can include or exclude)
+    <suite>
+        <test>
+            <class name="path to class">
+                <methods>
+                    <include name="method name"/>
+                    <exclude name="method name"/>
+                </methods>
+            </class>`
+        <test/>
+    <suite/>
+
+    - Package wise execuction: you can execute all the tests inside a package
+    <suite>
+        <test>
+            <packages>
+                <package name="package name"/>
+            </packages>
+        </test>
+    </suite>
+
+    - Group wise execution: when you put certain test cases in groups like:
+      @Test (groups = "group name")
+      you can execute all test cases inside that group. You should also
+      be specifying the package that contains the group
+        - note: if you have a @Before/AfterMethod that affects a class
+          in a group, you must put (alwaysRun = true) beside the @Before/AfterMethod annotation
+          otherwise those pre-conditions won't run
+    <suite>
+        <test>
+            <groups>
+                <run>
+                   include name="regression"/>
+                </run>
+            </groups>
+            <packages>
+               <package name="class1AnnotationsAndModifiers"></package>
+            </packages>
+        </test>
+    </suite>
+
+    - when you want to run tests in parallel, you must add these attributes inside <test> tag:
+      parallel="classes" thread-count="4"
+      for ex:
+    <suite name="All Test Suite">
+        <test verbose="2" preserve-order="true" name="parallel" parallel="classes" thread-count="4">
+        </test>
+    </suite>
+    - thread count attribute should be equal to the number of classes/methods you want to run in parallel
+    - parallel testing usually takes longer because your computer is doing several things at once.
+      not common for smaller projects because you need computers that can handle it.
+
+Smoke Testing
+    - basically quick/fast testing
+    - We identify some of the test cases to perform testing here which covers key functionalities of the application
+    - We perform smoke testing everyday
+Regression testing
+    - multiple test cases (50+ or 100+)
+    - When you test a new functionality combined with all the old functionalities as well
+
+- Smoke test is done everyday, regression tests happen maybe once a sprint (depends on the company)
+
+- 
