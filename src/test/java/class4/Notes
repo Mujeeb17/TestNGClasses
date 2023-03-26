@@ -1,0 +1,29 @@
+Listeners
+    - its like an external observer of a test case (it knows if it passed/fails)
+    - we can tell listener: if certain test case fails, do the following...
+
+    - in TestNG we have ITestListener interface that has methods:
+        - onTestSuccess()
+        - onTestFailure()
+
+    - We can make a class that implements ITestListener so we can give those methods
+      implementations. @Override those 2 methods
+    - We connect the Listener class and Test case using XML by:
+
+      <listener class = (listener class)/>
+      <classes>
+        <class (test case class)/>
+      </classes>
+
+    - note: this only seems to work when you run the XML file, not the actual class with the test case
+
+New Annotations
+    - @BeforeClass : runs only one time before the execution of a class
+    - @AfterClass : runs only one time after the execution of a class
+    - @Before/AfterTest : runs once you start/end a test (refer to xml structure)
+        - note you can have multiple <test> inside <suite>
+    - @Before/AfterSuite : runs once before/after everything happens
+
+    - these are all more commonly used with frameworks
+
+-
